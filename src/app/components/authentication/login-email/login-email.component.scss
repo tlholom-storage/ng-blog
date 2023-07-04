@@ -1,0 +1,19 @@
+
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+#log-in
+{
+  background-size: 25px;
+  border: 1px solid #95989a;
+}
+.mat-form-field
+{
+  width: 100%;
+}

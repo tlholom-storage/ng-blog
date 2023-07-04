@@ -1,0 +1,25 @@
+<mat-form-field class="input">
+  <!--this contains the list of tags-->
+
+  <mat-chip-list #taglist>
+      <!--set the properties for the tags-->
+
+      <mat-chip selected color="accent"
+                *ngFor="let Tag of Tags"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(Tag)">
+          {{Tag}}
+          <!--add icon with matChipRemove
+                 directive to remove any tag-->
+
+          <mat-icon matChipRemove
+                    *ngIf="removable">cancel
+        </mat-icon>
+      </mat-chip>
+      <input placeholder="Add Tags"
+             [matChipInputFor]="taglist"
+    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             (matChipInputTokenEnd)="add($event)" />
+  </mat-chip-list>
+</mat-form-field>

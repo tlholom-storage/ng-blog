@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row>
+    <span routerLink="/">ng-blog</span>
+    <span class="spacer"></span>
+
+    <div *ngIf="auth.currentUser$ | async as user; else showLogin">
+      <button routerLink="/dashboard" mat-raised-button color="accent">
+        Write a Post
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item disabled>
+          <span class="greeting">Hi {{ user.displayName || user.email | titlecase }}.</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>manage_accounts</mat-icon>
+          <span>View Profile</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+    <ng-template #showLogin>
+      <button routerLink="/login" mat-button>Login</button>
+    </ng-template>
+  </mat-toolbar-row>
+</mat-toolbar>

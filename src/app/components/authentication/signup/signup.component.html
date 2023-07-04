@@ -1,0 +1,77 @@
+<section>
+  <ng-container>
+    <div class="form-container">
+      <a routerLink="/login" id="goback">Go back</a>
+
+      <h2>Join now</h2>
+
+      <span class="error" *ngIf="error" >{{ error }}</span>
+
+      <form [formGroup]="signUpForm">
+        <div class="row">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Email address"
+              formControlName="email"
+            />
+            <mat-error
+              *ngIf="this.signUpForm.controls['email']?.errors?.['required']"
+            >
+              Email address is required
+            </mat-error>
+            <mat-error
+              *ngIf="this.signUpForm.controls['email']?.errors?.['email']"
+            >
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="this.signUpForm.controls['password']?.errors?.['required']"
+            >
+              Password is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Confirm Password"
+              formControlName="confirmPassword"
+            />
+            <mat-error
+              *ngIf="this.signUpForm.controls['confirmPassword']?.errors?.['required']"
+            >
+              Confirm Password is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+          Passwords should match
+        </mat-error>
+
+        <button
+        id="create-account"
+          type="submit"
+          mat-button
+          class="button"
+          [disabled]="!signUpForm.valid"
+          (click)="onSubmit()"
+        >
+          Create my account
+        </button>
+      </form>
+    </div>
+  </ng-container>
+</section>

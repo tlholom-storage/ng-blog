@@ -1,0 +1,80 @@
+<ng-container *ngIf="post$ | async as post">
+  <div [hidden]="!editing">
+    <mat-card>
+      <h1>Edit Post</h1>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Post title"
+          [(ngModel)]="this.toBeupdatedPost.title"
+          name="title"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Post content"
+          [(ngModel)]="this.toBeupdatedPost.content"
+          name="content"
+          rows="10"
+        ></textarea>
+      </mat-form-field>
+      <br />
+        <app-add-tags (tagsChangeEvent)="getUpdatedTags($event)"></app-add-tags>
+      <br/>
+      <button mat-raised-button (click)="updatePost()" color="accent">
+        Save
+      </button>
+      <button mat-button (click)="editing = false" *ngIf="editing">
+        Cancel
+      </button>
+    </mat-card>
+  </div>
+
+  <div [hidden]="editing">
+    <mat-card>
+      <img mat-card-image src="{{ post.image }}" alt="{{ post.title }}" width="550px" height="550px" />
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of post.tags">{{ tag }}</mat-chip>
+      </mat-chip-list>
+      <h2>{{ post.title }}</h2>
+      <p>
+        <small
+          >Posted by {{ post.author }} &bull; on
+          {{ post.published?.toDate() | date: "fullDate" }}</small
+        >
+      </p>
+      <mat-card-content>
+        <p>{{ post.content }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <ng-container *ngIf="auth.currentUser$ | async as user">
+          <button mat-icon-button>
+            <mat-icon>visibility</mat-icon>
+            <span>{{ post.views.length }}</span>
+          </button>
+          <button mat-icon-button (click)="likePost(post!, user)">
+            <mat-icon>thumb_up</mat-icon>
+            <span>{{ post.likes.length }}</span>
+          </button>
+          <button mat-icon-button (click)="dislikePost(post!, user)">
+            <mat-icon>thumb_down</mat-icon>
+            <span>{{ post.dislikes.length }}</span>
+          </button>
+        </ng-container>
+
+        <ng-container
+          *ngIf="(auth.currentUser$ | async)?.uid === post.authorId"
+        >
+          <button mat-icon-button (click)="editing = true">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="delete()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-container>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-container>

@@ -1,0 +1,77 @@
+<section>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Create a Post </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div [hidden]="!uploadPercent" class="row" style="margin-bottom: 10px">
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ uploadPercent | async }}"
+          color="accent"
+        ></mat-progress-bar>
+      </div>
+      <div>
+        <div class="row">
+          <button
+            mat-mini-fab
+            class="input-button"
+            (click)="inputField.click()"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <input
+            #inputField
+            hidden
+            type="file"
+            name="file"
+            id="file"
+            (change)="uploadImage($event)"
+          />
+
+          <div [hidden]="!image">
+            <img [src]="image || '//:0'" />
+          </div>
+        </div>
+
+        <div class="row">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Post title"
+              [(ngModel)]="title"
+              name="title"
+            />
+          </mat-form-field>
+        </div>
+        <br />
+        <div class="row">
+          <mat-form-field>
+            <textarea
+              matInput
+              placeholder="Post content"
+              [(ngModel)]="content"
+              name="content"
+              rows="10"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <br />
+        <div class="row">
+          <app-add-tags (tagsChangeEvent)="getUpdatedTags($event)"></app-add-tags>
+        </div>
+        <br />
+        <div class="row">
+          <button
+            mat-raised-button
+            (click)="createPost()"
+            color="accent"
+            [disabled]="!title || !content || !image"
+          >
+            {{ saving }}
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>

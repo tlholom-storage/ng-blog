@@ -1,0 +1,58 @@
+<section>
+  <ng-container>
+    <div class="form-container">
+      <a routerLink="/login" id="goback">Go back</a>
+      <h2>Email & Password Login</h2>
+
+      <span class="error" *ngIf="error">{{ error }}</span>
+
+      <form [formGroup]="loginForm">
+        <div class="row">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Email address"
+              formControlName="email"
+            />
+            <mat-error
+              *ngIf="this.loginForm.controls['email']?.errors?.['required']"
+            >
+              Email address is required
+            </mat-error>
+            <mat-error
+              *ngIf="this.loginForm.controls['email']?.errors?.['email']"
+            >
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="this.loginForm.controls['password']?.errors?.['required']"
+            >
+              Password is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button
+          id="log-in"
+          type="submit"
+          [disabled]="!loginForm.valid"
+          (click)="onSubmit()"
+          class="button"
+        >
+          Log in
+        </button>
+        <a routerLink="/signup" class="alc">Don't have an account?</a>
+      </form>
+    </div>
+  </ng-container>
+</section>

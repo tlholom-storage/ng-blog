@@ -1,0 +1,42 @@
+.big {
+  width: 250px;
+  height: 100px;
+  font-size: 20px;
+}
+#lock {
+  margin: 30px -10px 60px auto;
+  display: block;
+  width: 20%;
+}
+
+#google {
+  border: 1px solid #95989a;
+  background: #fff url("../../../../assets/images/google.svg") no-repeat 25px;
+  background-size: 25px;
+  margin-bottom: 10px;
+}
+
+#email {
+  background: #ececec url("../../../../assets/images/email.svg") no-repeat 25px;
+  background-size: 25px;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  #google {
+    background: #fff;
+  }
+
+  #email {
+    background: #ececec;
+  }
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  margin: 0 auto;
+  max-width: 90%;
+}

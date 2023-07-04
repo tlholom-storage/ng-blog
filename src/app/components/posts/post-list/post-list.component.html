@@ -1,0 +1,37 @@
+<nav mat-tab-nav-bar [tabPanel]="">
+  <a
+    mat-tab-link
+    *ngFor="let link of links"
+    (click)="filterPosts(link)"
+    [active]="activeLink == link"
+  >
+    {{ link }}
+  </a>
+</nav>
+
+<section>
+  <ng-container>
+    <mat-card *ngFor="let post of posts">
+      <mat-card-header> . </mat-card-header>
+      <mat-card-content routerLink="/blog/{{ post.id }}">
+        <div>
+          <img mat-card-image src="{{ post.image }}" alt="{{ post.title }}" />
+        </div>
+        <h2>{{ post.title }}</h2>
+        <p>
+          <small
+            >Posted by {{ post.author }} &bull; on
+            {{ post.published.toDate() | date: "medium" }}</small
+          >
+        </p>
+      </mat-card-content>
+      <ng-container *ngIf="(auth.currentUser$ | async)?.uid === post.authorId">
+        <mat-card-actions align="end">
+          <button mat-icon-button (click)="delete(post.id!)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </ng-container>
+    </mat-card>
+  </ng-container>
+</section>

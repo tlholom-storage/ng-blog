@@ -1,0 +1,26 @@
+[debug] [2022-03-07T20:18:03.650Z] ----------------------------------------------------------------------
+[debug] [2022-03-07T20:18:03.657Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Tlholo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-03-07T20:18:03.658Z] CLI Version:   10.2.2
+[debug] [2022-03-07T20:18:03.658Z] Platform:      win32
+[debug] [2022-03-07T20:18:03.659Z] Node Version:  v16.14.0
+[debug] [2022-03-07T20:18:03.660Z] Time:          Mon Mar 07 2022 22:18:03 GMT+0200 (South Africa Standard Time)
+[debug] [2022-03-07T20:18:03.661Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-07T20:18:03.739Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-07T20:18:03.739Z] > authorizing via signed-in user (tlholodev@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\angular\repos\ng-blog
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+  * You are initializing within an existing Firebase project directory
+
